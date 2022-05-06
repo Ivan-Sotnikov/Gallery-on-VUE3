@@ -7,8 +7,9 @@
       <div class="menu-btn_wrap">
         <div
           v-for="(key, index) of menuBtn"
-          @click.self="showDrop(index)"
+          @click.self="showDrop(key, index)"
           :key="index"
+          :linkHref="key.linkHref"
           class="menu-btn"
         >
           {{ key.head }}
@@ -44,7 +45,14 @@ export default {
     };
   },
   methods: {
-    showDrop(index) {
+    showDrop(key, index) {
+      if (key == null) {
+        this.showIndex = null;
+        return;
+      }
+      if (key.linkHref !== null) {
+        this.$router.push({ name: key.linkHref });
+      }
       this.showIndex = index;
     },
     changeLink(link) {
@@ -55,7 +63,7 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .header {
   background-color: rgb(49, 49, 49);
   height: 50px;

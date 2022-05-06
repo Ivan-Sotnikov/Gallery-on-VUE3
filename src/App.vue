@@ -1,16 +1,9 @@
 <template>
   <div class="app">
-    <home-page
-      :LetStart="LetStart"
-      @start="start"
-      :class="{ 'hide_home-page': LetStart }"
-      v-if="startPage"
-    >
-    </home-page>
     <my-header
-      v-if="true"
+      v-if="!$route.meta.isStart"
       :menuBtn="menuBtn"
-      :class="{ show_header: LetStart }"
+      :class="{ show_header: !$route.meta.isStart }"
       @login="showModal('login', null, null)"
     />
     <div :class="{ hide_router: LetStart }">
@@ -47,68 +40,22 @@ import MyModal from "./components/MyModal.vue";
 import LeaveComment from "./components/LeaveComment.vue";
 import MyButton from "./components/UI/MyButton.vue";
 import MyLogin from "./components/MyLogin.vue";
+import headermenu from "@/data/myHeaderMenu.json";
+import MyHeader from "@/components/MyHeader.vue";
 
 export default {
-  components: { MyGalleries, MyModal, LeaveComment, MyButton, MyLogin },
+  components: {
+    MyGalleries,
+    MyModal,
+    LeaveComment,
+    MyButton,
+    MyLogin,
+    MyHeader,
+  },
 
   data() {
     return {
-      menuBtn: [
-        {
-          head: "Навигация",
-          id: "1",
-          links: [
-            { linkName: "Главная страница", linkHref: "mainPage" },
-            { linkName: "Галереи", linkHref: "mainPage", linkParam: {} },
-          ],
-        },
-        {
-          head: "Галереи",
-          id: "2",
-          links: [
-            {
-              linkName: "Новые альбомы",
-              linkHref: "galleriesList",
-              linkParam: { name: "newAlbums" },
-            },
-            {
-              linkName: "Популярное",
-              linkHref: "galleriesList",
-              linkParam: { name: "popularAlbums" },
-            },
-            {
-              linkName: "Высокое разрешение",
-              linkHref: "galleriesList",
-              linkParam: { name: "higResAlbums" },
-            },
-          ],
-        },
-        {
-          head: "Я хочу...",
-          id: "1",
-          links: [
-            { linkName: "Воздушный шар", linkHref: "PNF", linkParam: {} },
-            { linkName: "Быть счастливым", linkHref: "PNF", linkParam: {} },
-            { linkName: "Заработать миллион", linkHref: "PNF", linkParam: {} },
-            {
-              linkName: "Найти хорошего соискателя",
-              linkHref: "about",
-              linkParam: {},
-            },
-            { linkName: "Увидеть чудо", linkHref: "PNF", linkParam: {} },
-            { linkName: "Если бы я знал", linkHref: "PNF", linkParam: {} },
-          ],
-        },
-        {
-          head: "О нас",
-          id: "2",
-          links: [
-            { linkName: "О проекте", linkHref: "about" },
-            { linkName: "Обратная Связь", linkHref: "about" },
-          ],
-        },
-      ],
-
+      menuBtn: headermenu,
       LetStart: false,
       startPage: true,
       pageAlbumNew: [],
@@ -162,24 +109,24 @@ export default {
     },
 
     async fetchAlbums() {
-      await fetch(
+      fetch(
         `https://jsonplaceholder.typicode.com/photos?_limit=${this.limit}&_page=1`
       )
         .then((response) => response.json())
         .then((json) => (this.pageAlbumNew = json));
-      await fetch(
+      fetch(
         `https://jsonplaceholder.typicode.com/photos?_limit=${this.limit}&_page=3`
       )
         .then((response) => response.json())
         .then((json) => (this.pageAlbumPopular = json));
-      await fetch(
+      fetch(
         `https://jsonplaceholder.typicode.com/photos?_limit=${this.limit}&_page=5`
       )
         .then((response) => response.json())
         .then((json) => (this.pageAlbumHiRes = json));
     },
     async fetchComments(id) {
-      await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
+      fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
         .then((response) => response.json())
         .then((json) => (this.modalComment = json));
     },
@@ -213,30 +160,36 @@ export default {
   from {
     top: 0;
   }
+
   to {
     top: 100vh;
   }
 }
+
 .show_header {
   animation-delay: 1s;
   animation-duration: 2s;
   animation-name: show;
   animation-fill-mode: backwards;
 }
+
 @keyframes show {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
+
 .hide_router {
   animation-delay: 1.5s;
   animation-duration: 2s;
   animation-name: show;
   animation-fill-mode: backwards;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -246,17 +199,20 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
 .app {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: white;
 }
+
 .login-btn {
   position: absolute;
   right: 0;
   top: 0;
   margin: 10px;
 }
+
 .background {
   position: fixed;
   height: 100vh;
@@ -264,13 +220,16 @@ export default {
   z-index: -10;
   background-color: rgb(78, 78, 78);
 }
+
 .modal_image__name {
   text-align: center;
   padding: 20px;
 }
+
 .modal_image__img {
   width: 100%;
 }
+
 .modal_image__comment {
   width: 100%;
 }

@@ -3,12 +3,21 @@ import GalleriesList from "@/pages/GalleriesList.vue";
 import About from "@/pages/About.vue";
 import GalleryPage from "@/pages/GalleryPage.vue";
 import NotFound from "@/pages/NotFound.vue";
+import HomePage from "@/pages/MyHomePage.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
     path: "/",
+    name: "startPage",
+    component: HomePage,
+    meta: {
+      isStart: true,
+    },
+  },
+  {
+    path: "/main",
     name: "mainPage",
     component: Main,
   },
@@ -30,6 +39,7 @@ const routes = [
   },
   {
     path: "/:catchAll(.*)",
+    name: "unknownPage",
     redirect: "/404",
   },
   {

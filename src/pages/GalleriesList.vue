@@ -3,6 +3,9 @@
     <div class="album_category">
       Подборка в категории {{ PageNames[$route.params.name].toLowerCase() }}
     </div>
+    <div class="btn_backward">
+      <my-button @click="$router.go(-1)">Вернуться обратно</my-button>
+    </div>
     <div class="album_select">
       <span> Альбомов на странице </span>
       <select v-model="albumsQty">
@@ -12,7 +15,7 @@
       </select>
     </div>
     <my-loader v-if="isLoading"></my-loader>
-    <div v-else class="album_prev">
+    <div v-else class="album_prevs">
       <div class="album_img" v-for="album in albums" :key="album.id">
         <img
           :src="album.url"
@@ -39,9 +42,10 @@
 </template>
 
 <script>
+import MyButton from "../components/UI/MyButton.vue";
 import MyPagination from "../components/UI/MyPagination.vue";
 export default {
-  components: { MyPagination },
+  components: { MyPagination, MyButton },
 
   data() {
     return {
@@ -94,7 +98,6 @@ export default {
         default:
           break;
       }
-
     },
   },
 
@@ -122,11 +125,11 @@ export default {
   text-align: center;
   margin: 20px;
 }
-.album_prev {
+.album_prevs {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 20px;
 }
@@ -146,6 +149,10 @@ export default {
   cursor: pointer;
   box-shadow: 0px 0px 10px #e74c3c;
   filter: brightness(1.3);
+}
+.btn_backward {
+  display: flex;
+  justify-content: center;
 }
 
 .album_img:hover .album_name {

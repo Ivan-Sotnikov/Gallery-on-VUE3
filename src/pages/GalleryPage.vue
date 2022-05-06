@@ -4,6 +4,9 @@
       Альбом {{ $route.params.galleryid }} из категории
       {{ PageNames[$route.params.name].toLowerCase() }}
     </h1>
+    <div class="btn_backward">
+      <my-button @click="$router.go(-1)">Вернуться обратно</my-button>
+    </div>
     <my-image-board @showModal="showModal"></my-image-board>
   </div>
 </template>
@@ -28,5 +31,10 @@ export default {
 .album_name {
   text-align: center;
   margin: 50px;
+}
+
+.btn_backward {
+  display: flex;
+  justify-content: center;
 }
 </style>

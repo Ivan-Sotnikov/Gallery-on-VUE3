@@ -14,7 +14,8 @@
                   name: galleryType,
                   galleryid: album.id,
                 },
-              })"
+              })
+            "
           />
 
           <div class="album_name">Альбом {{ album.id }}</div>

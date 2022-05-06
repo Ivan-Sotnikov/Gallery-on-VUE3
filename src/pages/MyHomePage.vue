@@ -5,7 +5,7 @@
       Начнем?
     </div>
     <div>
-      <my-button @click="this.$emit('start', true)"> Поехали! </my-button>
+      <my-button @click="$router.push('/main')"> Поехали! </my-button>
     </div>
   </div>
 </template>
@@ -13,12 +13,6 @@
 <script>
 export default {
   name: "home-page",
-  props: {
-    LetStart: {
-      type: Boolean,
-      required: true,
-    },
-  },
   data() {
     return {};
   },
@@ -40,6 +34,8 @@ export default {
   position: fixed;
   width: 100vw;
   z-index: 1;
+  top: 0px;
+  left: 0px;
 }
 .homepage_text {
   font-size: 5vh;
