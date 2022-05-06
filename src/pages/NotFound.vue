@@ -5,7 +5,7 @@
       Но не отчаивайтесь, возможно она находится в разработке!
     </h3>
     <div class="btn">
-      <my-button @click="$router.push('/')">вернуться на главную</my-button>
+      <my-button @click="$router.push('/main')">вернуться на главную</my-button>
     </div>
   </div>
 </template>

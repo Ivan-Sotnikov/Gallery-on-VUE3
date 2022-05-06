@@ -10,7 +10,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    name: "startPage",
+    name: "homePage",
     component: HomePage,
     meta: {
       isStart: true,
