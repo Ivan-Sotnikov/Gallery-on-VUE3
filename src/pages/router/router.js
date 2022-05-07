@@ -10,7 +10,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    name: "homePage",
+    name: "HomePage",
     component: HomePage,
     meta: {
       isStart: true,
@@ -36,12 +36,12 @@ const routes = [
     path: "/gallerieslist_:name/:galleryid",
     name: "gallerypage",
     component: GalleryPage,
-  },
+  },/* 
   {
     path: "/:catchAll(.*)",
     name: "unknownPage",
     redirect: "/404",
-  },
+  }, */
   {
     path: "/404",
     name: "PNF",
@@ -50,7 +50,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/Gallery_on_VUE3/'),
   routes,
 });
 
