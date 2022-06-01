@@ -1,39 +1,65 @@
 <template>
-  <div class="comment_main">
-    <div class="comment">Комментарии:</div>
-    <div v-for="comment in comments" :key="comment.id" class="comment">
-      <div class="comment_name">{{ comment.email }}</div>
-      <div class="comment_text">{{ comment.body }}</div>
-    </div>
-    <div v-for="MyComment in MyComments" :key="MyComment.id" class="comment">
-      <div class="comment_name">{{ MyComment.email }}</div>
-      <div class="comment_text">{{ MyComment.body }}</div>
-    </div>
-    <div class="comment_leave">Оставьте свой комментарий:</div>
-    <form class="comment_leave">
-      <div class="comment_leave__name">
-        <span>Ваше имя</span><br />
-        <input
-          type="text"
-          @keydown.enter.exact.prevent="createComment"
-          v-model="MyCommentName"
-          placeholder="Введите имя.."
-        />
-      </div>
+  <div>
+    <div class="py-5 text-lg">Комментарии:</div>
 
-      <div class="comment_leave__text">
-        <div>Комментарий</div>
-        <textarea
-          @keydown.enter.exact="createComment"
-          v-model="MyCommentBody"
-          placeholder="Ваш комментарий.."
-        ></textarea>
-      </div>
-      <button type="button" @click="createComment" class="create_btn">
-        Отправить
-      </button>
-    </form>
-    <hr />
+    <div
+      v-for="comment in comments"
+      :key="comment.id"
+      class="even:bg-gray-200 p-4 shadow-md"
+    >
+      <div class="font-bold pb-4">{{ comment.email }}</div>
+      <div class="first-letter:uppercase">{{ comment.body }}</div>
+    </div>
+    <div
+      v-for="MyComment in MyComments"
+      :key="MyComment.id"
+      class="bg-lime-200 shadow-md p-4"
+    >
+      <div class="font-bold pb-4">{{ MyComment.email }}</div>
+      <div class="first-letter:uppercase">{{ MyComment.body }}</div>
+    </div>
+    <div class="border-t-2 mt-5">
+      <div class="py-2 text-lg">Оставьте свой комментарий:</div>
+      <form>
+        <div class="relative">
+          <input
+            type="text"
+            id="name"
+            @keydown.enter.exact.prevent="createComment"
+            v-model="MyCommentName"
+            class="peer rounded-lg relative border-2 mt-5 placeholder-transparent"
+            placeholder="name"
+          />
+          <label
+            for="name"
+            class="absolute left-1 -top-2 text-sm peer-placeholder-shown:text-gray-400 transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:left-2 peer-placeholder-shown:text-md"
+            >Ваше имя</label
+          >
+        </div>
+
+        <div class="relative">
+          <textarea
+            id="comment"
+            @keydown.enter.exact="createComment"
+            v-model="MyCommentBody"
+            placeholder="comment"
+            class="peer rounded-lg relative border-2 w-full mt-10 placeholder-transparent"
+          ></textarea>
+          <label
+            for="comment"
+            class="absolute left-1 text-sm top-4 peer-placeholder-shown:text-gray-400 transition-all peer-placeholder-shown:top-11 peer-placeholder-shown:left-2 peer-placeholder-shown:text-md peer-placeholder-shown:after:content-['...']"
+            >Комментарий</label
+          >
+        </div>
+        <button
+          type="button"
+          @click="createComment"
+          class="float-right border-2 p-1 rounded-lg"
+        >
+          Отправить
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -84,52 +110,4 @@ export default {
 };
 </script>
 
-<style  scoped>
-.comment_main {
-  width: 100%;
-}
-.comment {
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 15px;
-  margin-bottom: 5px;
-
-  border-bottom: 2px solid rgb(203, 203, 203);
-  border-top: 2px solid rgb(203, 203, 203);
-}
-.comment_name {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-.comment_text {
-  margin-top: 20px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-.comment-date {
-  opacity: 60%;
-  font-size: 0.6em;
-  font-style: italic;
-}
-
-.comment_leave {
-  padding: 5px;
-  background-color: rgb(200, 200, 200);
-}
-
-.comment_leave__name {
-  margin-bottom: 15px;
-}
-.comment_leave__name span {
-  padding-bottom: 5px;
-  display: inline-block;
-}
-.comment_leave__text textarea {
-  resize: none;
-  height: 50px;
-  width: 100%;
-  box-sizing: border-box;
-}
-.comment_leave__text div {
-  padding-bottom: 5px;
-}
-</style>
+<style scoped></style>

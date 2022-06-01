@@ -1,11 +1,23 @@
 <template>
-  <div>
-    <span class="album_pallete"> <slot /> </span>
-    <div class="album_wrap">
-      <div class="album_prev" v-for="album in pageAlbum" :key="album.id">
+  <div class="max-w-[1500px] m-auto">
+    <div
+      @click="
+        $router.push({ name: 'galleriesList', params: { name: galleryType } })
+      "
+      class="text-left text-lg pb-5 align-top md:text-center md:text-2xl hover:cursor-pointer hover:text-orange-500"
+    >
+      <span class="material-icons px-3"> collections </span> <slot></slot>
+    </div>
+    <div class="px-4 flex flex-wrap justify-center">
+      <div
+        class="mx-2 mb-14 border-slate-400 border-[1px] border-s rounded-lg hover:cursor-pointer hover:brightness-125 underline-offset-2 hover:text-orange-500 transition-all"
+        v-for="album in pageAlbum"
+        :key="album.id"
+      >
         <div>
           <img
             :src="album.thumbnailUrl"
+            class="rounded-t-lg"
             alt="Album Preview"
             @click="
               $router.push({
@@ -18,9 +30,8 @@
             "
           />
 
-          <div class="album_name">Альбом {{ album.id }}</div>
+          <div class="text-center mt-3">Альбом {{ album.id }}</div>
         </div>
-        <hr />
       </div>
     </div>
 
@@ -28,11 +39,10 @@
       @click="
         $router.push({ name: 'galleriesList', params: { name: galleryType } })
       "
-      class="album_forward"
+      class="text-center md:text-right md:text-xl md:px-5 mb-5 text-lg underline underline-offset-4 hover:cursor-pointer hover:text-orange-500"
     >
       <slot name="foward"></slot>
     </div>
-    <hr />
   </div>
 </template>
 
@@ -54,43 +64,4 @@ export default {
 };
 </script>
 
-<style scoped>
-img {
-  height: 150px;
-  width: 150px;
-  transition: all 0.3s;
-}
-img:hover {
-  cursor: pointer;
-  filter: brightness(1.2);
-  box-shadow: 0px 0px 10px white;
-}
-.album_wrap {
-  display: flex;
-  justify-content: center;
-}
-.album_prev {
-  display: inline-block;
-  margin: 30px;
-}
-.album_name {
-  text-align: center;
-  transition: all 0.3s;
-}
-.album_pallete {
-  padding: 10px;
-  font-size: 1.4em;
-}
-
-.album_forward:hover {
-  cursor: pointer;
-  color: #e74c3c;
-}
-img:hover + .album_name {
-  color: #e74c3c;
-}
-.album_forward {
-  text-align: end;
-  padding: 20px;
-}
-</style>
+<style scoped></style>

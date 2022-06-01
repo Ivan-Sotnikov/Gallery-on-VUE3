@@ -1,37 +1,59 @@
 <template>
-  <div>
+  <div class="text-center m-3">
     <h1>О проекте:</h1>
-    <div class="about_desc">
+    <div class="p-4">
       Данный проект был создан в качестве портфолио, <br />
       а также для практики навыков работы в VUE3
     </div>
-    <div class="about_desc2">
-      <ul>
-        Реализованы следующие механизмы:
-        <li>Проект разбит на отдельные компоненты</li>
-        <li>Пагинация</li>
-        <li>Бесконечный скролл</li>
-        <li>
+    <div class="flex justify-center">
+      <ul class="text-left p-4 list-disc">
+        <div class="mb-4">Реализованы следующие механизмы:</div>
+        <li class="ml-4">Проект разбит на отдельные компоненты</li>
+        <li class="ml-4">Пагинация</li>
+        <li class="ml-4">Бесконечный скролл</li>
+        <li class="ml-4">
           Динамическая навигация <br />(роутинг с динамическими параметрами)
         </li>
-        <li>Модальные окна</li>
-        <li>Сортировка</li>
-        <li>Плавная смена страниц (посредством transition vue)</li>
-        <li>Динамически генерируемый header</li>
-        <li>Загрузка данных с сервера <br>(фетч альбомов, картинок, комментариев)</li>
+        <li class="ml-4">Модальные окна</li>
+        <li class="ml-4">Сортировка контента</li>
+        <li class="ml-4">Плавная смена страниц (посредством transition vue)</li>
+        <li class="ml-4">Динамически генерируемое меню в header</li>
+        <li class="ml-4">
+          Загрузка данных с сервера <br />(фетч альбомов, картинок,
+          комментариев)
+        </li>
+        <li class="ml-4">
+          Вся стилизация написана с ипользованием <br />
+          фреймворка Tailwindcss
+        </li>
+        <li class="ml-4">Адаптивная верстка для различных экранов</li>
       </ul>
     </div>
-    <div class="about_desc">
+    <div class="">
       Автор проекта: Сотников Иван <br />
-      <div class="about_desc"></div>
-      Ссылка на Github
-      <a target="_blank" href="https://github.com/Ivan-Sotnikov"
+      <div class=""></div>
+      Ссылка на Github:
+      <a
+        class="hover:text-orange-600 hover:cursor-pointer"
+        target="_blank"
+        href="https://github.com/Ivan-Sotnikov"
         >github.com/Ivan-Sotnikov
       </a>
       <br />
-      Почта: v.sotnikov95@mail.ru <br />
+      Почта:
+      <address class="hover:text-orange-600 inline text hover:cursor-pointer">
+        <a target="_blank" href="mailto:v.sotnikov95@mail.ru"
+          >v.sotnikov95@mail.ru</a
+        >
+      </address>
+      <br />
       Telegram:
-      <a target="_blank" href="https://t.me/Sotnikov_Ivan">@Sotnikov_Ivan</a>
+      <a
+        class="hover:text-orange-600 hover:cursor-pointer"
+        target="_blank"
+        href="https://t.me/Sotnikov_Ivan"
+        >@Sotnikov_Ivan</a
+      >
     </div>
   </div>
 </template>
@@ -40,23 +62,4 @@
 export default {};
 </script>
 
-<style scoped>
-.about_desc {
-  margin: 50px;
-  text-align: center;
-  line-height: 1.5em;
-}
-.about_desc a {
-  color: antiquewhite;
-}
-h1 {
-  text-align: center;
-}
-.about_desc2 {
-  display: flex;
-  justify-content: center;
-}
-.about_desc2 li {
-  padding: 10px;
-}
-</style>
+<style scoped></style>

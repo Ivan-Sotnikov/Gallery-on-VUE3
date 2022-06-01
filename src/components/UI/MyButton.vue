@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <button><slot></slot></button>
+  <div class="inline-block">
+    <button
+      class="flex self-center text-xl text-[#e74c3c] cursor-pointer py-3 px-12 border-2 rounded-xl border-[#e74c3c] hover:bg-[#e74c3c] hover:text-white transition-all duration-300 ease-in-out active:brightness-90"
+    >
+      <slot></slot>
+    </button>
   </div>
 </template>
 
@@ -10,32 +14,4 @@ export default {
 };
 </script>
 
-<style  scoped>
-button {
-  box-sizing: border-box;
-  appearance: none;
-  background-color: transparent;
-  border: 2px solid #e74c3c;
-  border-radius: 0.6em;
-  color: #e74c3c;
-  cursor: pointer;
-  display: flex;
-  align-self: center;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1;
-  margin: 20px;
-  padding: 1.2em 2.8em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-}
-button:hover {
-  box-shadow: 0 0 40px 40px #e74c3c inset;
-  color: #fff;
-  outline: 0;
-}
-</style>
+<style scoped></style>

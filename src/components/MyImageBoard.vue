@@ -1,22 +1,25 @@
 <template>
-  <div>
-    <div class="image_sort">
-      <div class="image_sort__title">Сортировать по:</div>
-      <my-select
-        class="image_sort__select"
-        :options="sortOption"
-        v-model="selectedSort"
-      ></my-select>
-    </div>
-    <my-loader v-if="isLoading"></my-loader>
-    <div v-else class="image">
-      <div class="image_prev" v-for="img in imgs" :key="img.id">
-        <img :src="img.url" @click="showModal(img)" alt="img.url" />
-        <div class="image_title">{{ img.title.split(" ", 2).join(" ") }}</div>
-      </div>
-    </div>
-    <div ref="observer" class="observer"></div>
+  <div class="text-center">
+    <div class="md:text-xl">Сортировать по:</div>
+    <my-select
+      class="bg-gray-600 m-4"
+      :options="sortOption"
+      v-model="selectedSort"
+    ></my-select>
   </div>
+  <my-loader v-if="isLoading"></my-loader>
+  <div v-else class="flex flex-wrap flex-row justify-center text-center">
+    <div class="m-3 transition-all hover:text-orange-600 hover:cursor-pointer hover:brightness-110" v-for="img in imgs" :key="img.id">
+      <img
+        :src="img.url"
+        @click="showModal(img)"
+        alt="img.url"
+        class="md:w-44 rounded-xl"
+      />
+      <div class="m-3">{{ img.title.split(" ", 2).join(" ") }}</div>
+    </div>
+  </div>
+  <div ref="observer"></div>
 </template>
 
 <script>
@@ -106,56 +109,4 @@ export default {
   },
 };
 </script>
-
-
-<style >
-.observer {
-  height: 20px;
-}
-.image {
-  display: flex;
-  flex-wrap: wrap;
-  width: 70%;
-  justify-content: center;
-  margin: auto;
-}
-.image_prev img {
-  height: 200px;
-  width: 200px;
-}
-.image_prev {
-  margin: 20px;
-  transition: all 0.3s;
-}
-
-.image_title {
-  text-align: center;
-  padding: 10px;
-}
-.image_prev:hover {
-  filter: brightness(1.3);
-  box-shadow: 0 0 10px #e74c3c;
-  cursor: pointer;
-}
-.image_prev:hover .image_title {
-  color: #e74c3c;
-}
-.image_sort {
-  margin: auto;
-  padding: 20px;
-  text-align: center;
-}
-.image_sort__title {
-  padding: 10px;
-}
-.image_sort__select {
-  background-color: rgb(78, 78, 78);
-  color: #e74c3c;
-  height: 20px;
-  border-radius: 5px;
-}
-.image_sort__select:focus {
-  box-shadow: 0 0 10px #e74c3c;
-  border-color: #e74c3c;
-}
-</style>
+<style></style>

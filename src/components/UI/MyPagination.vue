@@ -1,25 +1,33 @@
 <template>
-  <div class="pagination">
+  <div class="flex justify-center h-6 select-none">
     <div
-      class="page"
+      class="w-6 text-center hover:bg-orange-400 hover:cursor-pointer rounded-md transition-all"
       @click="$emit('changePage', changePage($event.target.id))"
-      :class="{ unavaliable: currentPage == 1 }"
+      :class="{
+        'text-gray-500': currentPage == 1,
+        'hover:bg-transparent': currentPage == 1,
+        'hover:cursor-default': currentPage == 1,
+      }"
     >
       <span id="prev" class="material-icons"> navigate_before </span>
     </div>
     <div
       v-for="page in allPages"
       :key="page"
-      class="page"
-      :class="{ current: page == currentPage }"
+      class="w-6 text-center hover:bg-orange-400 hover:cursor-pointer rounded-md transition-all"
+      :class="{ 'bg-orange-500': page == currentPage }"
       @click="$emit('changePage', page)"
     >
       {{ page }}
     </div>
     <div
-      class="page"
+      class="w-6 hover:bg-orange-400 hover:cursor-pointer rounded-md transition-all"
       @click="$emit('changePage', changePage($event.target.id))"
-      :class="{ unavaliable: currentPage == allPages }"
+      :class="{
+        'text-gray-500': currentPage == allPages,
+        'hover:bg-transparent': currentPage == allPages,
+        'hover:cursor-default': currentPage == allPages,
+      }"
     >
       <span id="next" class="material-icons"> navigate_next </span>
     </div>
@@ -55,34 +63,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.pagination {
-  display: flex;
-  user-select: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-}
-.page {
-  border: 1px solid black;
-  width: 24px;
-  height: 24px;
-  text-align: center;
-  line-height: 24px;
-}
-.page:hover {
-  color: blue;
-}
-.unavaliable {
-  background-color: grey;
-  color: black;
-  cursor: default;
-}
-.unavaliable:hover {
-  color: black;
-}
-
-.current {
-  background-color: #e74c3c;
-}
-</style>
+<style scoped></style>

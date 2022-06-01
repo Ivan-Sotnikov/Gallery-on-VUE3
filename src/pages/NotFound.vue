@@ -1,10 +1,10 @@
 <template>
-  <div class="not-found">
-    <h1 class="not-found">Страница не найдена:( <br /></h1>
-    <h3 class="not-found">
+  <div class="text-center p-4 md:text-lg lg:text-2xl">
+    <div class="p-4">Страница не найдена:(</div>
+    <div class="p-4">
       Но не отчаивайтесь, возможно она находится в разработке!
-    </h3>
-    <div class="btn">
+    </div>
+    <div class="mt-4">
       <my-button @click="$router.push('/main')">вернуться на главную</my-button>
     </div>
   </div>
@@ -14,15 +14,4 @@
 export default {};
 </script>
 
-<style scoped>
-.not-found {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: center;
-  color: white;
-}
-.btn {
-  display: flex;
-  justify-content: center;
-}
-</style>
+<style scoped></style>

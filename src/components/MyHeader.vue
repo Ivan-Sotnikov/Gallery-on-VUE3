@@ -1,26 +1,73 @@
 <template>
   <div>
-    <div class="header" @blur="showDrop(null)" tabindex="0">
-      <div @click="$emit('login')" class="login-btn">
+    <div class="h-14 bg-gray-800 border-b-4 border-[#e74c3c]">
+      <div
+        @click="$emit('login')"
+        class="select-none absolute right-3 top-3 cursor-pointer hover:shadow"
+      >
         <span class="material-icons"> account_circle </span>
       </div>
-      <div class="menu-btn_wrap">
+      <span
+        class="material-icons select-none absolute left-3 top-3 lg:invisible"
+        @click="showBurger = !showBurger"
+        :class="{ invisible: showBurger }"
+      >
+        menu
+      </span>
+      <span
+        class="material-icons select-none absolute left-3 top-3 lg:invisible"
+        @click="showBurger = !showBurger"
+        :class="{ invisible: !showBurger }"
+      >
+        close
+      </span>
+
+      <div
+        :class="{ invisible: !showBurger }"
+        tabindex="0"
+        @blur="showDrop(null, null)"
+        class="absolute top-14 p-4 select-none lg:visible lg:top-auto lg:inline-flex lg: lg:p-2 lg:w-[90%] bg-gray-800 lg:bg-transparent"
+      >
         <div
           v-for="(key, index) of menuBtn"
-          @click.self="showDrop(key, index)"
           :key="index"
           :linkHref="key.linkHref"
-          class="menu-btn"
+          class="p-1 cursor-pointer text-xl hovertest w-80"
+          :class="{
+            'bg-gray-700': index == showIndex,
+            'rounded-lg': index == showIndex,
+          }"
         >
-          {{ key.head }}
-          <div v-show="index == showIndex" class="menu-btn_dropdown">
-            <div
-              class="menu-btn_dropdown-link"
-              v-for="link in key.links"
-              :key="link.id"
-              @click="changeLink(link)"
+          <div
+            @click.self="showDrop(key, index)"
+            class="hover:bg-gray-700 hover:rounded-lg lg:text-center"
+          >
+            <span
+              v-if="key.linkHref == ''"
+              @click.self="showDrop(key, index)"
+              class="material-icons align-top pr-3 lg:hidden"
             >
-              <div>{{ link.linkName }}</div>
+              keyboard_arrow_down
+            </span>
+            <span
+              class="material-icons align-top pr-3"
+              v-if="key.linkHref !== ''"
+            >
+              home
+            </span>
+
+            {{ key.head }}
+          </div>
+          <div
+            class="p-1 cursor-pointer"
+            v-for="link in key.links"
+            :key="link.id"
+            @click="changeLink(link)"
+            v-show="index == showIndex"
+          >
+            <div class="hover:bg-white/10 hover:rounded-md">
+              <span class="material-icons"> minimize </span>
+              {{ link.linkName }}
             </div>
           </div>
         </div>
@@ -42,90 +89,33 @@ export default {
     return {
       dropMenu: { id: "", name: "", link: "" },
       showIndex: null,
+      showBurger: false,
     };
   },
   methods: {
     showDrop(key, index) {
-      if (key == null) {
+      if (index == null) {
         this.showIndex = null;
+        this.showBurger = false;
         return;
       }
-      if (key.linkHref !== null) {
-        this.$router.push({ name: key.linkHref });
+      if (key.linkHref !== "") {
+        this.changeLink(key);
+        return;
+      }
+      if (index == this.showIndex) {
+        this.showIndex = null;
+        return;
       }
       this.showIndex = index;
     },
     changeLink(link) {
       this.$router.push({ name: link.linkHref, params: link.linkParam });
       this.showIndex = null;
+      this.showBurger = null;
     },
   },
 };
 </script>
 
-<style scoped>
-.header {
-  background-color: rgb(49, 49, 49);
-  height: 50px;
-  width: 100vw;
-  color: white;
-  padding: 0;
-  margin: 0;
-  border-bottom: 5px solid #e74c3c;
-  display: flex;
-  justify-content: start;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-.menu-btn {
-  cursor: pointer;
-  background-color: rgb(49, 49, 49);
-  height: 100%;
-  width: 150px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  position: relative;
-  user-select: none;
-  border-radius: 10px;
-  transition: all 0.3s;
-}
-.menu-btn:hover {
-  background-color: rgb(95, 95, 95);
-}
-.menu-btn_wrap {
-  display: table;
-}
-.menu-btn_dropdown {
-  position: absolute;
-  width: 100%;
-  top: 100%;
-  background-color: rgb(49, 49, 49);
-  border-radius: 10px;
-}
-.menu-btn_dropdown-link:hover {
-  background-color: rgb(95, 95, 95);
-}
-.menu-btn_dropdown-link {
-  border-radius: inherit;
-  min-height: 60px;
-  text-decoration: none;
-
-  color: white;
-  line-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.login-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  user-select: none;
-}
-.login-btn:hover {
-  cursor: pointer;
-  text-shadow: 0px 0px 5px white;
-}
-</style>
+<style scoped></style>

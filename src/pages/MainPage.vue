@@ -1,43 +1,40 @@
 <template>
   <div>
-    <div class="main-title">
-      <span class="main-title_hi"> Привет! </span> <br />У нас для тебя есть
-      несколько галерей с интересными картинками. <br />Для просмотра перейди в
-      интересующую категорию, либо кликни сразу на галерею.
+    <div class="text-center px-4 py-5 md:text-xl lg:text-2xl">
+      <div>Привет!</div>
+      <div class="p-5">
+        У нас есть несколько галерей с интересными картинками.
+      </div>
+      Для просмотра перейди в интересующую категорию, либо кликни сразу на
+      галерею.
     </div>
     <div v-if="isLoading">
       <my-loader></my-loader>
     </div>
     <div v-else>
       <my-galleries
-        class="main-album"
+        class=""
         :pageAlbum="pageAlbumNew"
         :galleryType="'newAlbums'"
       >
-        <div class="main-album_name">Новые альбомы</div>
-        <template v-slot:foward class="main-album_lookFwd"
-          >Смотреть далее..</template
-        >
+        <div class="inline-block align-top">Новые альбомы</div>
+        <template v-slot:foward class="">Смотреть далее..</template>
       </my-galleries>
       <my-galleries
-        class="main-album"
+        class=""
         :pageAlbum="pageAlbumPopular"
         :galleryType="'popularAlbums'"
       >
-        <div class="main-album_name">Популярное</div>
-        <template v-slot:foward class="main-album_lookFwd"
-          >Смотреть далее..</template
-        >
+        <div class="inline-block align-top">Популярное</div>
+        <template v-slot:foward class="">Смотреть далее..</template>
       </my-galleries>
       <my-galleries
-        class="main-album"
+        class=""
         :pageAlbum="pageAlbumHiRes"
         :galleryType="'higResAlbums'"
       >
-        <div class="main-album_name">Высокое разрешение</div>
-        <template v-slot:foward class="main-album_lookFwd"
-          >Смотреть далее..</template
-        >
+        <div class="inline-block align-top">Высокое разрешение</div>
+        <template v-slot:foward class="">Смотреть далее..</template>
       </my-galleries>
     </div>
   </div>
@@ -86,31 +83,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.main-title {
-  text-align: center;
-  font-size: 1.3em;
-  padding-top: 30px;
-  line-height: 2em;
-}
-
-.main-title_hi {
-  font-weight: bold;
-  padding: 20px;
-  display: inline-block;
-}
-
-.main-album_ {
-  background-color: grey;
-}
-
-.main-album_name {
-  font-size: 1.3em;
-  text-align: center;
-  padding: 20px;
-}
-
-.main-album_lookFwd {
-  text-align: end;
-}
-</style>
+<style scoped></style>

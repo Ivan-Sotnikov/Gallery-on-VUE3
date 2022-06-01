@@ -1,25 +1,30 @@
 <template>
   <div>
-    <div class="album_category">
+    <div class="text-center pt-5 text-lg md:text-xl lg:text-2xl px-3">
       Подборка в категории {{ PageNames[$route.params.name].toLowerCase() }}
     </div>
-    <div class="btn_backward">
+    <div class="text-center pt-5">
       <my-button @click="$router.go(-1)">Вернуться обратно</my-button>
     </div>
-    <div class="album_select">
-      <span> Альбомов на странице </span>
-      <select v-model="albumsQty">
+    <div class="text-center pt-5 md:text-lg">
+      <span class="px-3"> Альбомов на странице </span>
+      <select class="bg-gray-600" v-model="albumsQty">
         <option value="12" selected>12</option>
         <option value="24">24</option>
         <option value="48">48</option>
       </select>
     </div>
     <my-loader v-if="isLoading"></my-loader>
-    <div v-else class="album_prevs">
-      <div class="album_img" v-for="album in albums" :key="album.id">
+    <div v-else class="flex flex-row flex-wrap justify-center mt-10">
+      <div
+        class="w-3/5 text-center border-[1px] border-slate-50/30 rounded-2xl md:w-72 md:m-6 transition-all hover:brightness-110 hover:border-slate-50 mb-3 hover:cursor-pointer hover:text-orange-600"
+        v-for="album in albums"
+        :key="album.id"
+      >
         <img
           :src="album.url"
           alt=""
+          class="rounded-t-2xl"
           @click="
             $router.push({
               name: 'gallerypage',
@@ -30,13 +35,14 @@
             })
           "
         />
-        <div class="album_name">Альбом {{ album.id }}</div>
+        <div class="pt-2 pb-4">Альбом {{ album.id }}</div>
       </div>
     </div>
     <my-pagination
       :currentPage="albumsPage"
       :allPages="allPages"
       @changePage="changePage"
+      class="mb-4"
     ></my-pagination>
   </div>
 </template>
@@ -78,7 +84,7 @@ export default {
       }
       /* В данном случае спиннер загрузки намеренно внесен в функцию setTimeout для имитации более долгой загрузки данных с сервера. В "боевой" ситуации спинер "выключается" в блоке finally 
       
-      Также хочу отметить, что при переходе из главной страницы на страницу галереи (по кнокпе "смотреть далее"), отражаются не те галереи что были на превью: это связано лишь с особенностью серверной части и ее "топорностью".
+      
       */
     },
     changePage(page) {
@@ -119,46 +125,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.album_category {
-  font-size: 2em;
-  text-align: center;
-  margin: 20px;
-}
-.album_prevs {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-}
-.album_img {
-  margin: 20px;
-  transition: all 0.3s;
-}
-.album_img img {
-  height: 150px;
-  width: 150px;
-}
-.album_name {
-  text-align: center;
-  transition: all 0.3s;
-}
-.album_img:hover {
-  cursor: pointer;
-  box-shadow: 0px 0px 10px #e74c3c;
-  filter: brightness(1.3);
-}
-.btn_backward {
-  display: flex;
-  justify-content: center;
-}
-
-.album_img:hover .album_name {
-  color: #e74c3c;
-}
-.album_select {
-  margin: 20px;
-}
-</style>
+<style scoped></style>

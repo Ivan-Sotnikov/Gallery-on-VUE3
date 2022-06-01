@@ -1,13 +1,15 @@
 <template>
   <div>
-    <h1 class="album_name">
+    <h1 class="text-center p-4 md:text-xl">
       Альбом {{ $route.params.galleryid }} из категории
       {{ PageNames[$route.params.name].toLowerCase() }}
     </h1>
-    <div class="btn_backward">
+    <div class="text-center mt-4">
       <my-button @click="$router.go(-1)">Вернуться обратно</my-button>
     </div>
-    <my-image-board @showModal="showModal"></my-image-board>
+    <div class="m-5">
+      <my-image-board @showModal="showModal"></my-image-board>
+    </div>
   </div>
 </template>
 
@@ -27,14 +29,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.album_name {
-  text-align: center;
-  margin: 50px;
-}
-
-.btn_backward {
-  display: flex;
-  justify-content: center;
-}
-</style>
+<style scoped></style>

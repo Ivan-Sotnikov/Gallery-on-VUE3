@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="text-white font-sansimage.png box-border">
     <my-header
       v-if="!$route.meta.isStart"
       :menuBtn="menuBtn"
@@ -14,13 +14,12 @@
       </router-view>
     </div>
     <my-modal :show="modalShow" @closeModal="closeModal">
-      <div class="modal_image" v-if="modalImage">
-        <div class="modal_image__name">
+      <div v-if="modalImage">
+        <div class="text-center py-5">
           {{ modalImageTitle.split(" ", 4).join(" ").toUpperCase() }}
         </div>
-        <img class="modal_image__img" :src="modalImageUrl" />
+        <img :src="modalImageUrl" />
         <leave-comment
-          class="modal_image__comment"
           :comments="modalComment"
         ></leave-comment>
       </div>
@@ -29,7 +28,6 @@
         <my-login></my-login>
       </div>
     </my-modal>
-    <div class="background"></div>
   </div>
 </template>
 
@@ -143,13 +141,6 @@ export default {
 };
 </script>
 <style scoped>
-.comment_component {
-  display: flex;
-  justify-content: center;
-  width: 600px;
-  box-sizing: border-box;
-}
-
 .hide_home-page {
   animation-duration: 1s;
   animation-name: slide;
@@ -198,39 +189,5 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-.app {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: white;
-}
-
-.login-btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: 10px;
-}
-
-.background {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: -10;
-  background-color: rgb(78, 78, 78);
-}
-
-.modal_image__name {
-  text-align: center;
-  padding: 20px;
-}
-
-.modal_image__img {
-  width: 100%;
-}
-
-.modal_image__comment {
-  width: 100%;
 }
 </style>

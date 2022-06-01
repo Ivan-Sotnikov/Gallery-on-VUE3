@@ -1,6 +1,8 @@
 <template>
-  <div class="homepage">
-    <div class="homepage_text">
+  <div class="h-screen flex flex-col items-center justify-center">
+    <div
+      class="text-center text-xl md:text-4xl first-letter:lg:text-5xl antialiased leading-loose md:leading-loose lg:leading-loose"
+    >
       Добро пожаловать в галерею! <br />
       Начнем?
     </div>
@@ -18,27 +20,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.homepage {
-  background-color: rgb(49, 49, 49);
-  color: white;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  text-align: center;
-  position: fixed;
-  width: 100vw;
-  z-index: 1;
-  top: 0px;
-  left: 0px;
-}
-.homepage_text {
-  font-size: 5vh;
-  line-height: 8vh;
-}
-</style>
