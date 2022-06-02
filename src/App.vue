@@ -1,30 +1,28 @@
 <template>
-  <div class="text-white font-sansimage.png box-border">
+  <div class="text-white font-sans box-border">
     <my-header
       v-if="!$route.meta.isStart"
       :menuBtn="menuBtn"
       :class="{ show_header: !$route.meta.isStart }"
       @login="showModal('login', null, null)"
     />
-    <div :class="{ hide_router: LetStart }">
+    <div :class="{ 'hide-router': isLetStart }">
       <router-view v-slot="{ Component }" @showModal="showModal">
         <transition name="fade" mode="out-in">
           <component :is="Component" />
         </transition>
       </router-view>
     </div>
-    <my-modal :show="modalShow" @closeModal="closeModal">
-      <div v-if="modalImage">
+    <my-modal :show="isModalShow" @closeModal="closeModal">
+      <div v-if="isModalImage">
         <div class="text-center py-5">
           {{ modalImageTitle.split(" ", 4).join(" ").toUpperCase() }}
         </div>
         <img :src="modalImageUrl" />
-        <leave-comment
-          :comments="modalComment"
-        ></leave-comment>
+        <leave-comment :comments="modalComment"></leave-comment>
       </div>
 
-      <div v-if="modalLogin">
+      <div v-if="isModalLogin">
         <my-login></my-login>
       </div>
     </my-modal>
@@ -32,7 +30,6 @@
 </template>
 
 <script>
-import { computed } from "@vue/runtime-core";
 import MyGalleries from "./components/MyGalleriesPreview.vue";
 import MyModal from "./components/MyModal.vue";
 import LeaveComment from "./components/LeaveComment.vue";
@@ -54,17 +51,17 @@ export default {
   data() {
     return {
       menuBtn: headermenu,
-      LetStart: false,
-      startPage: true,
+      isLetStart: false,
+      isStartPage: true,
       pageAlbumNew: [],
       pageAlbumPopular: [],
       pageAlbumHiRes: [],
       limit: 4,
       pages: 5,
-      modalImage: false,
+      isModalImage: false,
       modalImageUrl: "",
-      modalLogin: false,
-      modalShow: false,
+      isModalLogin: false,
+      isModalShow: false,
       modalComment: [],
       modalImageTitle: "",
     };
@@ -76,32 +73,32 @@ export default {
     },
 
     start(flag) {
-      this.LetStart = flag;
+      this.isisLetStart = flag;
       this.$router.push("/");
-      setTimeout(() => (this.startPage = false), 1000);
+      setTimeout(() => (this.isStartPage = false), 1000);
       this.fetchAlbums();
     },
     async showModal(type, url, id, title) {
       document.body.style.overflow = "hidden";
       switch (type) {
         case "image":
-          this.modalImage = true;
+          this.isModalImage = true;
           this.modalImageUrl = url;
           this.modalImageTitle = title;
           await this.fetchComments(id);
           break;
         case "login":
-          this.modalLogin = true;
+          this.isModalLogin = true;
           break;
         default:
           console.error("Wrong content type for modal window,check the input");
       }
-      this.modalShow = true;
+      this.isModalShow = true;
     },
     closeModal() {
-      this.modalShow = false;
-      this.modalImage = false;
-      this.modalLogin = false;
+      this.isModalShow = false;
+      this.isModalImage = false;
+      this.isModalLogin = false;
       this.modalComment = [];
       document.body.style.overflow = "";
     },
@@ -141,12 +138,6 @@ export default {
 };
 </script>
 <style scoped>
-.hide_home-page {
-  animation-duration: 1s;
-  animation-name: slide;
-  animation-fill-mode: forwards;
-}
-
 @keyframes slide {
   from {
     top: 0;
@@ -174,7 +165,7 @@ export default {
   }
 }
 
-.hide_router {
+.hide-router {
   animation-delay: 1.5s;
   animation-duration: 2s;
   animation-name: show;
