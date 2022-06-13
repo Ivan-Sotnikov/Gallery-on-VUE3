@@ -15,7 +15,7 @@
       v-for="page in allPages"
       :key="page"
       class="w-6 text-center hover:bg-orange-400 hover:cursor-pointer rounded-md transition-all"
-      :class="{ 'bg-orange-500': page == currentPage }"
+      :class="{ 'bg-[#e74c3c]': page == currentPage }"
       @click="$emit('changePage', page)"
     >
       {{ page }}

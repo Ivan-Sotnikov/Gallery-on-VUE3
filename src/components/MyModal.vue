@@ -5,7 +5,7 @@
       @click="$emit('closeModal')"
     ></div>
     <div
-      class="m-auto bg-white text-black z-10 rounded-xl p-10 w-screen md:w-96 lg:w-1/2 relative"
+      class="m-auto bg-white text-black z-10 rounded-xl p-10 w-screen md:w-96 relative"
     >
       <slot></slot>
 

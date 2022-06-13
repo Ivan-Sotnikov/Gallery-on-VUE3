@@ -1,5 +1,5 @@
 <template>
-  <div class="relative max-w-sm m-auto lg:border-2 lg:rounded-xl lg:p-2">
+  <div class="relative max-w-sm m-auto lg:p-1">
     <div
       v-if="errors.length !== 0"
       class="bg-red-400 p-2 absolute rounded-lg w-full left-0 top-0 text-center shadow-red-600"
@@ -15,6 +15,7 @@
           type="text"
           placeholder="Введите ваш логин..."
           v-model="login"
+          autocomplete="on"
         />
         <div class="text-center mt-5 text-lg">Пароль</div>
         <input
@@ -23,6 +24,7 @@
           type="password"
           placeholder="Введите пароль..."
           v-model="pass"
+          autocomplete="on"
         />
         <div class="flex justify-center">
           <my-button class="mt-10" @click.prevent="existUser">Войти</my-button>
@@ -41,6 +43,7 @@
           type="text"
           id="newUserLogin"
           v-model="username"
+          autocomplete="on"
         />
         <div class="text-center mt-5 text-lg">Email</div>
         <input
@@ -49,6 +52,7 @@
           type="text"
           id="email"
           v-model="email"
+          autocomplete="on"
         />
         <div class="text-center mt-5 text-lg">Придумайте пароль</div>
         <input
@@ -57,6 +61,7 @@
           type="password"
           id="newPass"
           v-model="newPass"
+          autocomplete="on"
         />
         <div class="flex justify-center">
           <my-button class="mt-10" @click.prevent="regUser"

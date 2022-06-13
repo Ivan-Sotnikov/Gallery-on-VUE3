@@ -9,7 +9,11 @@
   </div>
   <my-loader v-if="isLoading"></my-loader>
   <div v-else class="flex flex-wrap flex-row justify-center text-center">
-    <div class="m-3 transition-all hover:text-orange-600 hover:cursor-pointer hover:brightness-110" v-for="img in imgs" :key="img.id">
+    <div
+      class="m-3 w-44 transition-all hover:text-orange-600 hover:cursor-pointer hover:brightness-110"
+      v-for="img in imgs"
+      :key="img.id"
+    >
       <img
         :src="img.url"
         @click="showModal(img)"
@@ -23,13 +27,11 @@
 </template>
 
 <script>
-import { watch } from "@vue/runtime-core";
-import MyModal from "./MyModal.vue";
 import MySelect from "./MySelect.vue";
 export default {
-  components: { MyModal, MySelect },
+  components: { MySelect },
   name: "my-image-board",
-
+  emits: ["showModal"],
   data() {
     return {
       imgQty: 20,

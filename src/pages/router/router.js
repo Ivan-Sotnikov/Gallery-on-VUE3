@@ -1,25 +1,25 @@
-import Main from "@/pages/MainPage.vue";
+import MainPage from "@/pages/MainPage.vue";
 import GalleriesList from "@/pages/GalleriesList.vue";
 import About from "@/pages/About.vue";
 import GalleryPage from "@/pages/GalleryPage.vue";
 import NotFound from "@/pages/NotFound.vue";
-import HomePage from "@/pages/MyHomePage.vue";
+import WelcomePage from "@/pages/WelcomePage.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
     path: "/",
-    name: "HomePage",
-    component: HomePage,
+    name: "WelcomePage",
+    component: WelcomePage,
     meta: {
-      isStart: true,
+      layout: "WelcomeLayout",
     },
   },
   {
     path: "/main",
     name: "mainPage",
-    component: Main,
+    component: MainPage,
   },
 
   {
@@ -36,12 +36,12 @@ const routes = [
     path: "/gallerieslist_:name/:galleryid",
     name: "gallerypage",
     component: GalleryPage,
-  },/* 
+  },
   {
     path: "/:catchAll(.*)",
     name: "unknownPage",
     redirect: "/404",
-  }, */
+  },
   {
     path: "/404",
     name: "PNF",
@@ -50,7 +50,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory('/Gallery_on_VUE3/'),
+  history: createWebHistory("/Gallery_on_VUE3/"),
   routes,
 });
 

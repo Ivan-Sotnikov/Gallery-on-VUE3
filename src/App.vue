@@ -1,27 +1,23 @@
 <template>
   <div class="text-white font-sans box-border">
-    <my-header
-      v-if="!$route.meta.isStart"
-      :menuBtn="menuBtn"
-      :class="{ show_header: !$route.meta.isStart }"
-      @login="showModal('login', null, null)"
-    />
-    <div :class="{ 'hide-router': isLetStart }">
-      <router-view v-slot="{ Component }" @showModal="showModal">
-        <transition name="fade" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </div>
+    <transition name="fade" mode="out-in">
+      <app-layout>
+        <my-header :menuBtn="menuBtn" @login="showModal('login', null, null)" />
+      </app-layout>
+    </transition>
+    <router-view v-slot="{ Component }" @showModal="showModal">
+      <transition name="fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
     <my-modal :show="isModalShow" @closeModal="closeModal">
       <div v-if="isModalImage">
-        <div class="text-center py-5">
-          {{ modalImageTitle.split(" ", 4).join(" ").toUpperCase() }}
-        </div>
-        <img :src="modalImageUrl" />
-        <leave-comment :comments="modalComment"></leave-comment>
+        <my-image
+          :modalImageTitle="modalImageTitle"
+          :modalImageUrl="modalImageUrl"
+          :modalImageId="modalImageId"
+        ></my-image>
       </div>
-
       <div v-if="isModalLogin">
         <my-login></my-login>
       </div>
@@ -34,9 +30,11 @@ import MyGalleries from "./components/MyGalleriesPreview.vue";
 import MyModal from "./components/MyModal.vue";
 import LeaveComment from "./components/LeaveComment.vue";
 import MyButton from "./components/UI/MyButton.vue";
-import MyLogin from "./components/MyLogin.vue";
+import MyLogin from "./components/MyLoginModal.vue";
 import headermenu from "@/data/myHeaderMenu.json";
 import MyHeader from "@/components/MyHeader.vue";
+import AppLayout from "./components/layouts/AppLayout.vue";
+import MyImage from "./components/MyImageModal.vue";
 
 export default {
   components: {
@@ -46,6 +44,8 @@ export default {
     MyButton,
     MyLogin,
     MyHeader,
+    AppLayout,
+    MyImage,
   },
 
   data() {
@@ -62,8 +62,8 @@ export default {
       modalImageUrl: "",
       isModalLogin: false,
       isModalShow: false,
-      modalComment: [],
       modalImageTitle: "",
+      modalImageId: "",
     };
   },
 
@@ -73,7 +73,7 @@ export default {
     },
 
     start(flag) {
-      this.isisLetStart = flag;
+      this.isLetStart = flag;
       this.$router.push("/");
       setTimeout(() => (this.isStartPage = false), 1000);
       this.fetchAlbums();
@@ -85,7 +85,7 @@ export default {
           this.isModalImage = true;
           this.modalImageUrl = url;
           this.modalImageTitle = title;
-          await this.fetchComments(id);
+          this.modalImageId = id;
           break;
         case "login":
           this.isModalLogin = true;
@@ -99,7 +99,6 @@ export default {
       this.isModalShow = false;
       this.isModalImage = false;
       this.isModalLogin = false;
-      this.modalComment = [];
       document.body.style.overflow = "";
     },
 
@@ -119,11 +118,6 @@ export default {
       )
         .then((response) => response.json())
         .then((json) => (this.pageAlbumHiRes = json));
-    },
-    async fetchComments(id) {
-      fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
-        .then((response) => response.json())
-        .then((json) => (this.modalComment = json));
     },
   },
   provide() {
@@ -148,13 +142,6 @@ export default {
   }
 }
 
-.show_header {
-  animation-delay: 1s;
-  animation-duration: 2s;
-  animation-name: show;
-  animation-fill-mode: backwards;
-}
-
 @keyframes show {
   from {
     opacity: 0;
@@ -163,13 +150,6 @@ export default {
   to {
     opacity: 1;
   }
-}
-
-.hide-router {
-  animation-delay: 1.5s;
-  animation-duration: 2s;
-  animation-name: show;
-  animation-fill-mode: backwards;
 }
 
 .fade-enter-active,

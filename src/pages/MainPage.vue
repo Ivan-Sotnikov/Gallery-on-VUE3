@@ -12,29 +12,20 @@
       <my-loader></my-loader>
     </div>
     <div v-else>
-      <my-galleries
-        class=""
-        :pageAlbum="pageAlbumNew"
-        :galleryType="'newAlbums'"
-      >
+      <my-galleries :pageAlbum="pageAlbumNew" :galleryType="'newAlbums'">
         <div class="inline-block align-top">Новые альбомы</div>
-        <template v-slot:foward class="">Смотреть далее..</template>
+        <template #foward>Смотреть далее..</template>
       </my-galleries>
       <my-galleries
-        class=""
         :pageAlbum="pageAlbumPopular"
         :galleryType="'popularAlbums'"
       >
         <div class="inline-block align-top">Популярное</div>
-        <template v-slot:foward class="">Смотреть далее..</template>
+        <template #foward>Смотреть далее..</template>
       </my-galleries>
-      <my-galleries
-        class=""
-        :pageAlbum="pageAlbumHiRes"
-        :galleryType="'higResAlbums'"
-      >
+      <my-galleries :pageAlbum="pageAlbumHiRes" :galleryType="'higResAlbums'">
         <div class="inline-block align-top">Высокое разрешение</div>
-        <template v-slot:foward class="">Смотреть далее..</template>
+        <template #foward>Смотреть далее..</template>
       </my-galleries>
     </div>
   </div>
@@ -55,17 +46,17 @@ export default {
   methods: {
     async fetchAlbums() {
       try {
-        await fetch(
+        fetch(
           `https://jsonplaceholder.typicode.com/photos?_limit=${this.limit}&_page=1`
         )
           .then((response) => response.json())
           .then((json) => (this.pageAlbumNew = json));
-        await fetch(
+        fetch(
           `https://jsonplaceholder.typicode.com/photos?_limit=${this.limit}&_page=11`
         )
           .then((response) => response.json())
           .then((json) => (this.pageAlbumPopular = json));
-        await fetch(
+        fetch(
           `https://jsonplaceholder.typicode.com/photos?_limit=${this.limit}&_page=21`
         )
           .then((response) => response.json())

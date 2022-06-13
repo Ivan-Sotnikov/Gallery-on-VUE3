@@ -94,7 +94,6 @@ export default {
         return;
       }
       const commentToPush = {};
-      /* this.$emit('addComment',{...this.commentToPush}); */
       commentToPush.id = this.MyComments.length;
       commentToPush.email = this.MyCommentName;
       commentToPush.body = this.MyCommentBody;

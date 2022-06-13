@@ -29,19 +29,21 @@
         <li class="ml-4">Адаптивная верстка для различных экранов</li>
       </ul>
     </div>
-    <div class="">
+    <div class="mt-4">
       Автор проекта: Сотников Иван <br />
       <div class=""></div>
       Ссылка на Github:
       <a
-        class="hover:text-orange-600 hover:cursor-pointer"
+        class="text-blue-300 hover:text-orange-600 hover:cursor-pointer"
         target="_blank"
         href="https://github.com/Ivan-Sotnikov"
         >github.com/Ivan-Sotnikov
       </a>
       <br />
       Почта:
-      <address class="hover:text-orange-600 inline text hover:cursor-pointer">
+      <address
+        class="text-blue-300 hover:text-orange-600 inline text hover:cursor-pointer"
+      >
         <a target="_blank" href="mailto:v.sotnikov95@mail.ru"
           >v.sotnikov95@mail.ru</a
         >
@@ -49,7 +51,7 @@
       <br />
       Telegram:
       <a
-        class="hover:text-orange-600 hover:cursor-pointer"
+        class="text-blue-300 hover:text-orange-600 hover:cursor-pointer"
         target="_blank"
         href="https://t.me/Sotnikov_Ivan"
         >@Sotnikov_Ivan</a

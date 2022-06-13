@@ -110,6 +110,9 @@ export default {
       this.showIndex = index;
     },
     changeLink(link) {
+      if (link.linkHref.indexOf("http") != -1) {
+        window.location.href = link.linkHref;
+      }
       this.$router.push({ name: link.linkHref, params: link.linkParam });
       this.showIndex = null;
       this.showBurger = null;

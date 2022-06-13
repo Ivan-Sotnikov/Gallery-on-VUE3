@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import { registerRuntimeCompiler } from "@vue/runtime-core";
 import MyImageBoard from "../components/MyImageBoard.vue";
 export default {
   components: { MyImageBoard },

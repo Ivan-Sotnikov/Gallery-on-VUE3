@@ -32,15 +32,15 @@
     "id": "3",
     "linkHref":"",
     "links": [
-      { "linkName": "Воздушный шар", "linkHref": "PNF", "linkParam": {} },
-      { "linkName": "Быть счастливым", "linkHref": "PNF", "linkParam": {} },
-      { "linkName": "Заработать миллион", "linkHref": "PNF", "linkParam": {} },
+      { "linkName": "Придумать отмазку", "linkHref": "http://copout.me", "linkParam": {} },
+      { "linkName": "Сделать все хорошо", "linkHref": "http://make-everything-ok.com", "linkParam": {} },
+      { "linkName": "Отдохнуть", "linkHref": "https://arkadia.xyz", "linkParam": {} },
       {
         "linkName": "Найти хорошего соискателя",
-        "linkHref": "about",
+        "linkHref": "https://ivan-sotnikov.github.io/My_CV/",
         "linkParam": {}
       },
-      { "linkName": "Увидеть чудо", "linkHref": "PNF", "linkParam": {} },
+      { "linkName": "Увидеть чудо", "linkHref": "http://stars.chromeexperiments.com", "linkParam": {} },
       { "linkName": "Если бы я знал", "linkHref": "PNF", "linkParam": {} }
     ]
   },
